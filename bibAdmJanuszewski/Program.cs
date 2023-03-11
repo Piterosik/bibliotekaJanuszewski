@@ -32,9 +32,11 @@ namespace bibAdmJanuszewski
 
             for (; ; )
             {
+                Console.Clear();
                 ShowMenu();
                 char selection = Console.ReadKey().KeyChar;
                 Console.WriteLine("\n");
+
                 switch (selection)
                 {
                     case 'w':
@@ -53,6 +55,9 @@ namespace bibAdmJanuszewski
                         Console.WriteLine("Nieprawidłowa opcja");
                         break;
                 }
+
+                Console.Write("Oczekiwanie na wcisniecie klawisza...");
+                Console.ReadKey();
             }
 
         }
