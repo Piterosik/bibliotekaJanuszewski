@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Ksiazki>
+  <Ksiazka id="1" tytul="Lalka" idAutora="" ISBN="" cena="11.92" idWydawnictwa=""/>
+  <Ksiazka id="2" tytul="Wesele" idAutora="" ISBN="" cena="12.93" idWydawnictwa=""/>
+</Ksiazki>

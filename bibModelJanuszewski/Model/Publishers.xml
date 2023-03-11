@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Wydawcy>
+  <Wydawca id="1" nazwa="ABC" strona="www.abc.pl"/>
+  <Wydawca id="2" nazwa="XYZ" strona="www.xyz.pl"/>
+</Wydawcy>
