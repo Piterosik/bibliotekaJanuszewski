@@ -7,10 +7,10 @@
           <xs:complexType>
             <xs:attribute name="id" type="xs:unsignedLong" use="required" />
             <xs:attribute name="tytul" type="xs:string" use="required" />
-            <xs:attribute name="idAutora" type="xs:string" use="required" />
+            <xs:attribute name="idAutora" type="xs:unsignedLong" use="required" />
             <xs:attribute name="ISBN" type="xs:string" use="required" />
             <xs:attribute name="cena" type="xs:float" use="required" />
-            <xs:attribute name="idWydawnictwa" type="xs:string" use="required" />
+            <xs:attribute name="idWydawnictwa" type="xs:unsignedLong" use="required" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>

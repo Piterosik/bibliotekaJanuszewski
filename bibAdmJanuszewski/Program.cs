@@ -31,6 +31,8 @@ namespace bibAdmJanuszewski
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\__ukw"
                 );
 
+            db.TestData();
+
             //Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             //Console.WriteLine(db.TestData());
 
@@ -129,6 +131,45 @@ namespace bibAdmJanuszewski
                     foreach (KsiazkiKsiazka ksiazka in ksiazki.Ksiazka)
                     {
                         table.AddRow(ksiazka.id, ksiazka.tytul, ksiazka.ISBN, ksiazka.cena, ksiazka.idAutora, ksiazka.idWydawnictwa);
+                    }
+                    table.Write(Format.Alternative);
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine("Autorzy LINQ");
+                var autorzyLQ = db.ReportDataLQAutorzy();
+                if (autorzyLQ != null)
+                {
+                    var table = new ConsoleTable("ID", "Nazwisko", "Imie", "RokUrodzenia");
+                    foreach (var item in autorzyLQ)
+                    {
+                        table.AddRow(item.id, item.nazwisko, item.imię, item.rokUr);
+                    }
+                    table.Write(Format.Alternative);
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine("Wydawcy LINQ");
+                var wydawcyLQ = db.ReportDataLQWydawcy();
+                if (wydawcyLQ != null)
+                {
+                    var table = new ConsoleTable("ID", "Nazwa", "Strona"); ;
+                    foreach (var item in wydawcyLQ)
+                    {
+                        table.AddRow(item.id, item.nazwa, item.strona);
+                    }
+                    table.Write(Format.Alternative);
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine("Ksiazki LINQ");
+                var ksiazkiLQ = db.ReportDataLQKsiązki();
+                if (ksiazkiLQ != null)
+                {
+                    var table = new ConsoleTable("ID", "Tytul", "Autor", "Cena", "ISBN", "Wydawnictwo"); ;
+                    foreach (var item in ksiazkiLQ)
+                    {
+                        table.AddRow(item.id, item.tytul, item.autorNazwisko + " " + item.autorImie, item.cena, item.ISBN, item.wydawnictwoNazwa);
                     }
                     table.Write(Format.Alternative);
                     Console.WriteLine();

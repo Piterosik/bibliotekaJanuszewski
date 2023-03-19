@@ -1,6 +1,8 @@
 ﻿using bibModelJanuszewski.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -65,16 +67,16 @@ namespace bibModelJanuszewski
             {
                 Ksiazka = new KsiazkiKsiazka[]
             {
-                new KsiazkiKsiazka() { id=1, tytul="Lalka", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=2, tytul="Wesele", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=3, tytul="Placówka", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=4, tytul="Inny świat", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=5, tytul="Powrót z gwiazd", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=6, tytul="Heban", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=7, tytul="Faraon", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=8, tytul="Ziemia obiecana", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=9, tytul="Ogniem i mieczem", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" },
-                new KsiazkiKsiazka() { id=10, tytul="Dzieła zebrane", cena=2.50f, idAutora="", idWydawnictwa="",ISBN="" }
+                new KsiazkiKsiazka() { id=1, tytul="Lalka", cena=2.50f, idAutora=1, idWydawnictwa=5,ISBN="" },
+                new KsiazkiKsiazka() { id=2, tytul="Wesele", cena=2.50f, idAutora=2, idWydawnictwa=4,ISBN="" },
+                new KsiazkiKsiazka() { id=3, tytul="Placówka", cena=2.50f, idAutora=3, idWydawnictwa=3,ISBN="" },
+                new KsiazkiKsiazka() { id=4, tytul="Inny świat", cena=2.50f, idAutora=4, idWydawnictwa=2,ISBN="" },
+                new KsiazkiKsiazka() { id=5, tytul="Powrót z gwiazd", cena=2.50f, idAutora=5, idWydawnictwa=1,ISBN="" },
+                new KsiazkiKsiazka() { id=6, tytul="Heban", cena=2.50f, idAutora=5, idWydawnictwa=5,ISBN="" },
+                new KsiazkiKsiazka() { id=7, tytul="Faraon", cena=2.50f, idAutora=4, idWydawnictwa=4,ISBN="" },
+                new KsiazkiKsiazka() { id=8, tytul="Ziemia obiecana", cena=2.50f, idAutora=3, idWydawnictwa=3,ISBN="" },
+                new KsiazkiKsiazka() { id=9, tytul="Ogniem i mieczem", cena=2.50f, idAutora=2, idWydawnictwa=2,ISBN="" },
+                new KsiazkiKsiazka() { id=10, tytul="Dzieła zebrane", cena=2.50f, idAutora=1, idWydawnictwa=1,ISBN="" }
             }
             };
 
@@ -117,6 +119,7 @@ namespace bibModelJanuszewski
             return true;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Usuń nieużywane prywatne składowe", Justification = "<Oczekujące>")]
         private static bool GenerateBooks(string path)
         {
             XDocument doc = new XDocument(
@@ -210,6 +213,57 @@ namespace bibModelJanuszewski
             }
 
             return result;
+        }
+
+        private T DeserializeXML<T>()
+        {
+            T result;
+            XmlSerializer xs = new XmlSerializer(typeof(T));
+
+            string path = typeof(T) == typeof(Autorzy) ? authorsFile : typeof(T) == typeof(Wydawcy) ? publishersFile : booksFile;
+
+            using (StreamReader sr = new StreamReader(path))
+            {
+                result = (T) xs.Deserialize(sr);
+            }
+            return result;
+        }
+
+        public IOrderedEnumerable<AutorzyAutor> ReportDataLQAutorzy()
+        {
+            var autorzy = DeserializeXML<Autorzy>();
+            return from item in autorzy.Autor orderby item.nazwisko select item;
+        }
+
+        public IOrderedEnumerable<WydawcyWydawca> ReportDataLQWydawcy()
+        {
+            var wydawcy = DeserializeXML<Wydawcy>();
+            return from item in wydawcy.Wydawca orderby item.nazwa select item;
+        }
+
+        public List<KsiążkiKsiążkaExt> ReportDataLQKsiązki()
+        {
+            var autorzy = ReportDataLQAutorzy();
+            var wydawcy = ReportDataLQWydawcy();
+            var ksiazki = DeserializeXML<Ksiazki>();
+
+            return (from item in ksiazki.Ksiazka
+                    join author in autorzy on item.idAutora equals author.id
+                    join publisher in wydawcy on item.idWydawnictwa equals publisher.id
+                    orderby item.tytul
+                    select new KsiążkiKsiążkaExt()
+                    {
+                        id = item.id,
+                        tytul = item.tytul,
+                        autorNazwisko = author.nazwisko,
+                        autorImie = author.imię,
+                        cena = item.cena,
+                        ISBN = item.ISBN,
+                        wydawnictwoNazwa = publisher.nazwa
+                    }
+                    ).ToList();
+
+
         }
     }
 }

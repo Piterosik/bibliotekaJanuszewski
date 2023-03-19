@@ -56,13 +56,13 @@ namespace bibModelJanuszewski.Model
 
         private string tytulField;
 
-        private string idAutoraField;
+        private ulong idAutoraField;
 
         private string iSBNField;
 
         private float cenaField;
 
-        private string idWydawnictwaField;
+        private ulong idWydawnictwaField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -94,7 +94,7 @@ namespace bibModelJanuszewski.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string idAutora
+        public ulong idAutora
         {
             get
             {
@@ -136,7 +136,7 @@ namespace bibModelJanuszewski.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string idWydawnictwa
+        public ulong idWydawnictwa
         {
             get
             {
