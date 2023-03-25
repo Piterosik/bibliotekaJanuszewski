@@ -8,7 +8,7 @@ namespace bibAdmJanuszewski
     {
         static void Main(string[] args)
         {
-            BDLibrary db = new(
+            DBLibrary db = new(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\__ukw"
                 );
 
@@ -30,7 +30,10 @@ namespace bibAdmJanuszewski
                         break;
                     case 'a':
                     case 'A':
-                        Console.WriteLine("Wybrałeś opcję A");
+                        Console.WriteLine("Podaj nazwisko autora: ");
+                        var author = Console.ReadLine();
+                        if (author == null) Console.WriteLine("Nie podano nazwiska!");
+                        else ShowAuthorData(db, author);
                         break;
                     case 'x':
                     case 'X':
@@ -50,8 +53,8 @@ namespace bibAdmJanuszewski
         static void ShowMenu()
         {
             string[] options = new string[] {
-                "W - wyświetl dane (wszystkie)",
-                "A - ksiażki dla podanego autora",
+                "W - wyswietl dane (wszystkie)",
+                "A - ksiazki dla podanego autora",
                 "",
                 "X - koniec"
             };
@@ -63,7 +66,7 @@ namespace bibAdmJanuszewski
             Console.Write("Wybierz opcje: ");
         }
 
-        static void ShowData(BDLibrary db)
+        static void ShowData(DBLibrary db)
         {
 
             Console.WriteLine("Autorzy LINQ");
@@ -105,7 +108,10 @@ namespace bibAdmJanuszewski
                 Console.WriteLine();
             }
 
+        }
 
+        static void ShowAuthorData(DBLibrary db, string author)
+        {
 
         }
     }
