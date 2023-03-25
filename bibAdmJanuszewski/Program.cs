@@ -32,8 +32,8 @@ namespace bibAdmJanuszewski
                     case 'A':
                         Console.WriteLine("Podaj nazwisko autora: ");
                         var author = Console.ReadLine();
-                        if (author == null) Console.WriteLine("Nie podano nazwiska!");
-                        else ShowAuthorData(db, author);
+                        if (author != null) ShowAuthorData(db, author);
+                        else Console.WriteLine("Nie podano nazwiska!");
                         break;
                     case 'x':
                     case 'X':
@@ -96,7 +96,7 @@ namespace bibAdmJanuszewski
             }
 
             Console.WriteLine("Ksiazki LINQ");
-            var booksLQ = db.ReportDataLQBooks();
+            var booksLQ = db.ReportDataLQBooks().ToList();
             if (booksLQ != null)
             {
                 var table = new ConsoleTable("ID", "Tytul", "Autor", "Cena", "ISBN", "Wydawnictwo"); ;
@@ -112,6 +112,17 @@ namespace bibAdmJanuszewski
 
         static void ShowAuthorData(DBLibrary db, string author)
         {
+            var books = db.ReportDataLQBooks().Where(item => item.authorLastName.ToLower() == author.ToLower()).ToList();
+            if (books != null)
+            {
+                var table = new ConsoleTable("ID", "Tytul", "Autor", "Cena", "ISBN", "Wydawnictwo"); ;
+                foreach (var item in books)
+                {
+                    table.AddRow(item.id, item.title, item.authorLastName + " " + item.authorFirstName, item.price, item.ISBN, item.publisherName);
+                }
+                table.Write(Format.Alternative);
+                Console.WriteLine();
+            }
 
         }
     }

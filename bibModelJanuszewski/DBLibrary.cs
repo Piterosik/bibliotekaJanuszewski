@@ -1,6 +1,5 @@
 ﻿using bibModelJanuszewski.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -9,11 +8,11 @@ using System.Xml.Serialization;
 
 namespace bibModelJanuszewski
 {
-    public class BDLibrary
+    public class DBLibrary
     {
         readonly string authorsFile, publishersFile, booksFile;
 
-        public BDLibrary(string path, string authorsFile = null, string publishersFile = null, string booksFile = null)
+        public DBLibrary(string path, string authorsFile = null, string publishersFile = null, string booksFile = null)
         {
             if (authorsFile == null) authorsFile = DefaultFileNames.defAuthors;
             if (publishersFile == null) publishersFile = DefaultFileNames.defPublishers;
@@ -144,16 +143,15 @@ namespace bibModelJanuszewski
             return from item in Publishers.Publisher orderby item.name select item;
         }
 
-        public List<BooksBookExt> ReportDataLQBooks()
+        public IOrderedEnumerable<BooksBookExt> ReportDataLQBooks()
         {
-            var Authors = ReportDataLQAuthors();
-            var Publishers = ReportDataLQPublishers();
-            var Books = DeserializeXML<Books>();
+            var authors = ReportDataLQAuthors();
+            var publishers = ReportDataLQPublishers();
+            var books = DeserializeXML<Books>();
 
-            return (from item in Books.Book
-                    join author in Authors on item.authorId equals author.id
-                    join publisher in Publishers on item.publisherId equals publisher.id
-                    orderby item.title
+            return (from item in books.Book
+                    join author in authors on item.authorId equals author.id
+                    join publisher in publishers on item.publisherId equals publisher.id
                     select new BooksBookExt()
                     {
                         id = item.id,
@@ -163,10 +161,9 @@ namespace bibModelJanuszewski
                         price = item.price,
                         ISBN = item.ISBN,
                         publisherName = publisher.name
-                    }
-                    ).ToList();
-
+                    }).OrderBy(a => a.title);
 
         }
+
     }
 }
