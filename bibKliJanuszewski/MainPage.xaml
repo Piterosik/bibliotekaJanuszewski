@@ -8,7 +8,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid >
+        <Button Content="Autorzy" Margin="64,183,0,0" VerticalAlignment="Top" x:Name="btAuthors" Click="btAuthors_Click"/>
+        <Button Content="Strona WWW" Margin="64,220,0,0" VerticalAlignment="Top" x:Name="btWebsite" Click="btWebsite_Click"/>
+        <Button Content="Ustawienia" Margin="64,257,0,0" VerticalAlignment="Top" x:Name="btSettings" Click="btSettings_Click"/>
+        <Button Content="Pomoc" Margin="64,294,0,0" VerticalAlignment="Top" x:Name="btHelp" Click="btHelp_Click"/>
 
     </Grid>
 </Page>
