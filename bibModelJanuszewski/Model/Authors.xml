@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Autorzy>
-  <Autor id="1" nazwisko="Prus" imię="Bolesław" rokUr="1847" />
-  <Autor id="2" nazwisko="Prus" imię="Bolesław" rokUr="1847" />
-</Autorzy>
+<Authors>
+  <Author id="1" lastName="Prus" firstName="Bolesław" year="1847" />
+  <Author id="2" lastName="Prus" firstName="Bolesław" year="1847" />
+</Authors>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Wydawcy>
-  <Wydawca id="1" nazwa="ABC" strona="www.abc.pl"/>
-  <Wydawca id="2" nazwa="XYZ" strona="www.xyz.pl"/>
-</Wydawcy>
+<Publishers>
+  <Publisher id="1" name="ABC" website="www.abc.pl"/>
+  <Publisher id="2" name="XYZ" website="www.xyz.pl"/>
+</Publishers>

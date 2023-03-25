@@ -16,7 +16,6 @@ using System.Xml.Serialization;
 
 namespace bibModelJanuszewski.Model
 {
-
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
     [System.SerializableAttribute()]
@@ -24,22 +23,22 @@ namespace bibModelJanuszewski.Model
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class Wydawcy
+    public partial class Publishers
     {
 
-        private WydawcyWydawca[] wydawcaField;
+        private PublishersPublisher[] publisherField;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Wydawca")]
-        public WydawcyWydawca[] Wydawca
+        [System.Xml.Serialization.XmlElementAttribute("Publisher")]
+        public PublishersPublisher[] Publisher
         {
             get
             {
-                return this.wydawcaField;
+                return this.publisherField;
             }
             set
             {
-                this.wydawcaField = value;
+                this.publisherField = value;
             }
         }
     }
@@ -50,14 +49,14 @@ namespace bibModelJanuszewski.Model
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class WydawcyWydawca
+    public partial class PublishersPublisher
     {
 
         private ulong idField;
 
-        private string nazwaField;
+        private string nameField;
 
-        private string stronaField;
+        private string websiteField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -75,29 +74,29 @@ namespace bibModelJanuszewski.Model
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string nazwa
+        public string name
         {
             get
             {
-                return this.nazwaField;
+                return this.nameField;
             }
             set
             {
-                this.nazwaField = value;
+                this.nameField = value;
             }
         }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string strona
+        public string website
         {
             get
             {
-                return this.stronaField;
+                return this.websiteField;
             }
             set
             {
-                this.stronaField = value;
+                this.websiteField = value;
             }
         }
     }

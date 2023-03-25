@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
 using System.Xml.Serialization;
 
 
@@ -27,61 +26,61 @@ namespace bibModelJanuszewski
 
         public bool TestData()
         {
-            Autorzy autorzy = new Autorzy
+            Authors authors = new Authors
             {
-                Autor = new AutorzyAutor[]
+                Author = new AuthorsAuthor[]
             {
-                new AutorzyAutor() { id = 1, imię = "Jan", nazwisko = "Kowalski", rokUr = 1999 },
-                new AutorzyAutor() { id = 2, imię = "Adam", nazwisko = "Nowak", rokUr = 1999 },
-                new AutorzyAutor() { id = 3, imię = "Ewelina", nazwisko = "Kątna", rokUr = 1999 },
-                new AutorzyAutor() { id = 4, imię = "Dawid", nazwisko = "Kopacz", rokUr = 1999 },
-                new AutorzyAutor() { id = 5, imię = "Piotr", nazwisko = "Januszewski", rokUr = 1997 },
+                new AuthorsAuthor() { id = 1, firstName = "Jan", lastName = "Kowalski", year = 1999 },
+                new AuthorsAuthor() { id = 2, firstName = "Adam", lastName = "Nowak", year = 1999 },
+                new AuthorsAuthor() { id = 3, firstName = "Ewelina", lastName = "Kątna", year = 1999 },
+                new AuthorsAuthor() { id = 4, firstName = "Dawid", lastName = "Kopacz", year = 1999 },
+                new AuthorsAuthor() { id = 5, firstName = "Piotr", lastName = "Januszewski", year = 1997 },
             }
             };
 
             Console.WriteLine("Saving authors file: " + authorsFile);
-            if (!SaveFile(authorsFile, autorzy))
+            if (!SaveFile(authorsFile, authors))
             {
                 return false;
             }
 
-            Wydawcy wydawcy = new Wydawcy
+            Publishers publishers = new Publishers
             {
-                Wydawca = new WydawcyWydawca[]
+                Publisher = new PublishersPublisher[]
             {
-                new WydawcyWydawca() { id=1, nazwa="Dom Wydawniczy Rebis", strona="www.rebis.com.pl" },
-                new WydawcyWydawca() { id=2, nazwa="Wydawnictwo Albatros", strona="www.wydawnictwoalbatros.com" },
-                new WydawcyWydawca() { id=3, nazwa="Wydawnictwo Czarne", strona="http://czarne.com.pl" },
-                new WydawcyWydawca() { id=4, nazwa="Wydawnictwo Literackie", strona="www.wydawnictwoliterackie.pl" },
-                new WydawcyWydawca() { id=5, nazwa="Fabryka Słów", strona="www.fabrykaslow.com.pl" }
+                new PublishersPublisher() { id=1, name="Dom Wydawniczy Rebis", website="www.rebis.com.pl" },
+                new PublishersPublisher() { id=2, name="Wydawnictwo Albatros", website="www.wydawnictwoalbatros.com" },
+                new PublishersPublisher() { id=3, name="Wydawnictwo Czarne", website="http://czarne.com.pl" },
+                new PublishersPublisher() { id=4, name="Wydawnictwo Literackie", website="www.wydawnictwoliterackie.pl" },
+                new PublishersPublisher() { id=5, name="Fabryka Słów", website="www.fabrykaslow.com.pl" }
             }
             };
 
             Console.WriteLine("Saving publishers file: " + publishersFile);
-            if (!SaveFile(publishersFile, wydawcy))
+            if (!SaveFile(publishersFile, publishers))
             {
                 return false;
             }
 
-            Ksiazki ksiazki = new Ksiazki
+            Books books = new Books
             {
-                Ksiazka = new KsiazkiKsiazka[]
+                Book = new BooksBook[]
             {
-                new KsiazkiKsiazka() { id=1, tytul="Lalka", cena=2.50f, idAutora=1, idWydawnictwa=5,ISBN="" },
-                new KsiazkiKsiazka() { id=2, tytul="Wesele", cena=2.50f, idAutora=2, idWydawnictwa=4,ISBN="" },
-                new KsiazkiKsiazka() { id=3, tytul="Placówka", cena=2.50f, idAutora=3, idWydawnictwa=3,ISBN="" },
-                new KsiazkiKsiazka() { id=4, tytul="Inny świat", cena=2.50f, idAutora=4, idWydawnictwa=2,ISBN="" },
-                new KsiazkiKsiazka() { id=5, tytul="Powrót z gwiazd", cena=2.50f, idAutora=5, idWydawnictwa=1,ISBN="" },
-                new KsiazkiKsiazka() { id=6, tytul="Heban", cena=2.50f, idAutora=5, idWydawnictwa=5,ISBN="" },
-                new KsiazkiKsiazka() { id=7, tytul="Faraon", cena=2.50f, idAutora=4, idWydawnictwa=4,ISBN="" },
-                new KsiazkiKsiazka() { id=8, tytul="Ziemia obiecana", cena=2.50f, idAutora=3, idWydawnictwa=3,ISBN="" },
-                new KsiazkiKsiazka() { id=9, tytul="Ogniem i mieczem", cena=2.50f, idAutora=2, idWydawnictwa=2,ISBN="" },
-                new KsiazkiKsiazka() { id=10, tytul="Dzieła zebrane", cena=2.50f, idAutora=1, idWydawnictwa=1,ISBN="" }
+                new BooksBook() { id=1, title="Lalka", price=2.50f, authorId=1, publisherId=5,ISBN="" },
+                new BooksBook() { id=2, title="Wesele", price=2.50f, authorId=2, publisherId=4,ISBN="" },
+                new BooksBook() { id=3, title="Placówka", price=2.50f, authorId=3, publisherId=3,ISBN="" },
+                new BooksBook() { id=4, title="Inny świat", price=2.50f, authorId=4, publisherId=2,ISBN="" },
+                new BooksBook() { id=5, title="Powrót z gwiazd", price=2.50f, authorId=5, publisherId=1,ISBN="" },
+                new BooksBook() { id=6, title="Heban", price=2.50f, authorId=5, publisherId=5,ISBN="" },
+                new BooksBook() { id=7, title="Faraon", price=2.50f, authorId=4, publisherId=4,ISBN="" },
+                new BooksBook() { id=8, title="Ziemia obiecana", price=2.50f, authorId=3, publisherId=3,ISBN="" },
+                new BooksBook() { id=9, title="Ogniem i mieczem", price=2.50f, authorId=2, publisherId=2,ISBN="" },
+                new BooksBook() { id=10, title="Dzieła zebrane", price=2.50f, authorId=1, publisherId=1,ISBN="" }
             }
             };
 
             Console.WriteLine("Saving books file: " + booksFile);
-            if (!SaveFile(booksFile, ksiazki))
+            if (!SaveFile(booksFile, books))
             {
                 return false;
             }
@@ -119,108 +118,12 @@ namespace bibModelJanuszewski
             return true;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Usuń nieużywane prywatne składowe", Justification = "<Oczekujące>")]
-        private static bool GenerateBooks(string path)
-        {
-            XDocument doc = new XDocument(
-                new XDeclaration("1.0", "utf-8", "no"),
-                new XComment("Przykładowe dane ksiązek"),
-                new XElement("Ksiazki",
-                    new XAttribute("wersja", "2.0"),
-                    new XElement("Ksiazka",
-                        new XAttribute("id", "1"),
-                        new XAttribute("tytul", "Lalka"),
-                        new XAttribute("idAutora", ""),
-                        new XAttribute("ISBN", ""),
-                        new XAttribute("cena", ""),
-                        new XAttribute("idWydawnictwa", "")
-                    )
-                )
-            );
-
-
-            string[,] bookData = new string[,]
-            {
-                {"Bolesław Prus", "Lalka" },
-                {"Stanisław Wyspiański", "Wesele" },
-                {"Bolesław Prus", "Placówka" },
-                {"Gustaw Herling-Grudziński", "Inny świat" },
-                {"Stanisław Lem", "Powrót z gwiazd" },
-                {"Ryszard Kapuściński", "Heban" },
-                {"Bolesław Prus", "Faraon" },
-                {"Władysław Stanisław Reymont", "Ziemia obiecana" },
-                {"Henryk Sienkiewicz", "Ogniem i mieczem" },
-                {"Piotr Januszewski", "Dzieła zebrane" }
-            };
-
-            for (int i = 0; i < bookData.Length; i++)
-            {
-                doc.Root.Add(
-                    new XElement("Ksiazka",
-                        new XAttribute("id", i + 1),
-                        new XAttribute("tytul", bookData[i, 1]),
-                        new XAttribute("idAutora", ""),
-                        new XAttribute("ISBN", ""),
-                        new XAttribute("cena", 15.00f + (0.5f * i)),
-                        new XAttribute("idWydawnictwa", "")
-                    )
-                );
-            }
-
-
-            Console.WriteLine("Saving books file: " + path);
-            try
-            {
-                if (!File.Exists(path))
-                {
-                    doc.Save(path);
-                }
-                else
-                {
-                    Console.WriteLine("File exists");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-                return false;
-            }
-            return true;
-        }
-
-        public string[,] ReportData()
-        {
-            string[,] result = new string[,]
-            {
-                {"Autorzy:",XDocument.Load(authorsFile).ToString() },
-                {"Wydawcy:", XDocument.Load(publishersFile).ToString() },
-                {"Ksiazki:", XDocument.Load(booksFile).ToString() },
-            };
-            return result;
-        }
-
-        public T ReportData2<T>()
-        {
-            T result;
-
-            XmlSerializer xs = new XmlSerializer(typeof(T));
-
-            string path = typeof(T) == typeof(Autorzy) ? authorsFile : typeof(T) == typeof(Wydawcy) ? publishersFile : booksFile;
-
-            using (StreamReader sr = new StreamReader(path))
-            {
-                result = (T) xs.Deserialize(sr);
-            }
-
-            return result;
-        }
-
         private T DeserializeXML<T>()
         {
             T result;
             XmlSerializer xs = new XmlSerializer(typeof(T));
 
-            string path = typeof(T) == typeof(Autorzy) ? authorsFile : typeof(T) == typeof(Wydawcy) ? publishersFile : booksFile;
+            string path = typeof(T) == typeof(Authors) ? authorsFile : typeof(T) == typeof(Publishers) ? publishersFile : booksFile;
 
             using (StreamReader sr = new StreamReader(path))
             {
@@ -229,37 +132,37 @@ namespace bibModelJanuszewski
             return result;
         }
 
-        public IOrderedEnumerable<AutorzyAutor> ReportDataLQAutorzy()
+        public IOrderedEnumerable<AuthorsAuthor> ReportDataLQAuthors()
         {
-            var autorzy = DeserializeXML<Autorzy>();
-            return from item in autorzy.Autor orderby item.nazwisko select item;
+            var Authors = DeserializeXML<Authors>();
+            return from item in Authors.Author orderby item.lastName select item;
         }
 
-        public IOrderedEnumerable<WydawcyWydawca> ReportDataLQWydawcy()
+        public IOrderedEnumerable<PublishersPublisher> ReportDataLQPublishers()
         {
-            var wydawcy = DeserializeXML<Wydawcy>();
-            return from item in wydawcy.Wydawca orderby item.nazwa select item;
+            var Publishers = DeserializeXML<Publishers>();
+            return from item in Publishers.Publisher orderby item.name select item;
         }
 
-        public List<KsiążkiKsiążkaExt> ReportDataLQKsiązki()
+        public List<BooksBookExt> ReportDataLQBooks()
         {
-            var autorzy = ReportDataLQAutorzy();
-            var wydawcy = ReportDataLQWydawcy();
-            var ksiazki = DeserializeXML<Ksiazki>();
+            var Authors = ReportDataLQAuthors();
+            var Publishers = ReportDataLQPublishers();
+            var Books = DeserializeXML<Books>();
 
-            return (from item in ksiazki.Ksiazka
-                    join author in autorzy on item.idAutora equals author.id
-                    join publisher in wydawcy on item.idWydawnictwa equals publisher.id
-                    orderby item.tytul
-                    select new KsiążkiKsiążkaExt()
+            return (from item in Books.Book
+                    join author in Authors on item.authorId equals author.id
+                    join publisher in Publishers on item.publisherId equals publisher.id
+                    orderby item.title
+                    select new BooksBookExt()
                     {
                         id = item.id,
-                        tytul = item.tytul,
-                        autorNazwisko = author.nazwisko,
-                        autorImie = author.imię,
-                        cena = item.cena,
+                        title = item.title,
+                        authorLastName = author.lastName,
+                        authorFirstName = author.firstName,
+                        price = item.price,
                         ISBN = item.ISBN,
-                        wydawnictwoNazwa = publisher.nazwa
+                        publisherName = publisher.name
                     }
                     ).ToList();
 

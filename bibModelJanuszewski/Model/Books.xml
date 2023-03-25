@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Ksiazki>
-  <Ksiazka id="1" tytul="Lalka" idAutora="0" ISBN="" cena="11.92" idWydawnictwa="0"/>
-  <Ksiazka id="2" tytul="Wesele" idAutora="0" ISBN="" cena="12.93" idWydawnictwa="0"/>
-</Ksiazki>
+<Books>
+  <Book id="1" title="Lalka" authorId="0" ISBN="" price="11.92" publisherId="0"/>
+  <Book id="2" title="Wesele" authorId="0" ISBN="" price="12.93" publisherId="0"/>
+</Books>

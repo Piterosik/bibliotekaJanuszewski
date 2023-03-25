@@ -1,9 +1,9 @@
 ﻿namespace bibModelJanuszewski.Model
 {
-    public partial class KsiążkiKsiążkaExt : KsiazkiKsiazka
+    public partial class BooksBookExt : BooksBook
     {
-        public string autorImie { set; get; }
-        public string autorNazwisko { set; get; }
-        public string wydawnictwoNazwa { set; get; }
+        public string authorFirstName { set; get; }
+        public string authorLastName { set; get; }
+        public string publisherName { set; get; }
     }
 }
