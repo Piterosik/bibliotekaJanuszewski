@@ -8,11 +8,20 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid >
-        <Button Content="Autorzy" Margin="64,183,0,0" VerticalAlignment="Top" x:Name="btAuthors" Click="btAuthors_Click"/>
-        <Button Content="Strona WWW" Margin="64,220,0,0" VerticalAlignment="Top" x:Name="btWebsite" Click="btWebsite_Click"/>
-        <Button Content="Ustawienia" Margin="64,257,0,0" VerticalAlignment="Top" x:Name="btSettings" Click="btSettings_Click"/>
-        <Button Content="Pomoc" Margin="64,294,0,0" VerticalAlignment="Top" x:Name="btHelp" Click="btHelp_Click"/>
-
+    <Grid Background="YellowGreen">
+        <NavigationView Name="NavView" OpenPaneLength="200" IsBackEnabled="{x:Bind frmMain.CanGoBack, Mode=OneWay}" BackRequested="NavView_BackRequested" ItemInvoked="NavView_ItemInvoked">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Name="AuthorListMenuItem" Content="Autorzy" Icon="Contact"></NavigationViewItem>
+                <NavigationViewItem Name="PublisherListMenuItem" Content="Wydawcy" Icon="Favorite"></NavigationViewItem>
+                <NavigationViewItem Name="BookListMenuItem" Content="Książki" Icon="Library"></NavigationViewItem>
+            </NavigationView.MenuItems>
+            <NavigationView.PaneFooter>
+                <StackPanel Orientation="Vertical">
+                    <NavigationViewItem Name="WebsiteMenuItem" Content="Strona WWW" Icon="Globe" Tapped="btWebsite_Click"></NavigationViewItem>
+                    <NavigationViewItem Name="HelpMenuItem" Content="Pomoc" Icon="Help" Tapped="btHelp_Click"></NavigationViewItem>
+                </StackPanel>
+            </NavigationView.PaneFooter>
+            <Frame Name="frmMain" Margin="20,0,0,0"/>
+        </NavigationView>
     </Grid>
 </Page>

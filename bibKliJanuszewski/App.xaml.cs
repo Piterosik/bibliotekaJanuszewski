@@ -12,6 +12,7 @@ namespace bibKliJanuszewski
     /// </summary>
     sealed partial class App : Application
     {
+        public BDLibraryUWP BDLibraryUWP;
         /// <summary>
         /// Inicjuje pojedynczy obiekt aplikacji. Jest to pierwszy wiersz napisanego kodu
         /// wykonywanego i jest logicznym odpowiednikiem metod main() lub WinMain().
@@ -20,9 +21,9 @@ namespace bibKliJanuszewski
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-
+            BDLibraryUWP = new BDLibraryUWP();
         }
+
 
         /// <summary>
         /// Wywoływane, gdy aplikacja jest uruchamiana normalnie przez użytkownika końcowego. Inne punkty wejścia

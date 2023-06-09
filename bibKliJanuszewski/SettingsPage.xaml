@@ -9,10 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <RadioButton Content="Systemowy" Margin="83,269,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Tryb Ciemny" Margin="83,306,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Tryb Jasny" Margin="83,0,0,0"/>
-        <TextBox HorizontalAlignment="Left" Margin="83,204,0,0" Text="Tryb Jasny/Ciemny" VerticalAlignment="Top" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsReadOnly="True"/>
+        <RadioButton Content="Systemowy" Name="SystemThemeRB" Margin="83,269,0,0" VerticalAlignment="Top" Checked="ThemeRB_Checked" />
+        <RadioButton Content="Tryb Ciemny" Name="DarkThemeRB" Margin="83,306,0,0" VerticalAlignment="Top" Checked="ThemeRB_Checked"/>
+        <RadioButton Content="Tryb Jasny" Name="LightThemeRB" Margin="83,0,0,0" Checked="ThemeRB_Checked"/>
+        <TextBox HorizontalAlignment="Left" Margin="83,218,0,0" Text="Tryb Jasny/Ciemny" VerticalAlignment="Top" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsReadOnly="True" BorderThickness="0,0,0,0"/>
 
     </Grid>
 </Page>
